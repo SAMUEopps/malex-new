@@ -43,8 +43,8 @@ class DashboardTab extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Expanded(
-          child: Container(
+        //Expanded(
+           Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -56,7 +56,7 @@ class DashboardTab extends StatelessWidget {
                 )
               ],
             ),
-            child: SingleChildScrollView(
+           child: SingleChildScrollView(
               child: DataTable(
                 headingRowColor:
                     MaterialStateProperty.all(const Color(0xFFF5F7F9)),
@@ -153,7 +153,7 @@ class DashboardTab extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        //)
       ],
     );
   }

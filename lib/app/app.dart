@@ -26,7 +26,7 @@ import 'package:malex_new/screens/quotations_tab.dart';
 import 'package:malex_new/screens/reports_tab.dart';
 import 'package:malex_new/screens/sales_tab.dart';
 import 'package:malex_new/screens/settings_tab.dart';
-import 'package:malex_new/screens/time_qr_tab.dart';
+import 'package:malex_new/screens/time_qr/time_qr_tab.dart';
 import 'package:malex_new/widgets/common/navigation_tile.dart';
 
 class ExpenseTrackerApp extends StatelessWidget {
@@ -194,10 +194,19 @@ final List<NavigationItem> _navigationItems = const [
             ),
           ),
           // Main Content
-          Expanded(
+          /*Expanded(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
               child: _buildCurrentTab(),
+            ),
+          ),*/
+                    // Main Content
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SingleChildScrollView(
+                child: _buildCurrentTab(),
+              ),
             ),
           ),
         ],
