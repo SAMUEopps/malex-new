@@ -76,7 +76,7 @@ class _TimeQrTabState extends State<TimeQrTab> {
   }
 }*/
 
-import 'dart:async';
+ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera_platform_interface/camera_platform_interface.dart';
 
@@ -377,7 +377,7 @@ Future<void> _captureNow() async {
       child: Column(
         children: [
           // Face Recognition Section
-          Container(
+          /*Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.only(bottom: 16),
@@ -468,7 +468,7 @@ Future<void> _captureNow() async {
                 ),
               ],
             ),
-          ),
+          ),*/
 
           // Existing QR Code Section
           TimeQrBody(
