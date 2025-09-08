@@ -59,8 +59,7 @@ class SalesTab extends StatelessWidget {
         const SizedBox(height: 24),
 
         // DataTable
-        Expanded(
-          child: Container(
+        Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -116,14 +115,13 @@ class SalesTab extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        
       ],
     );
   }
 
   Widget _kpiCard(String title, String value, Color color) {
-    return Expanded(
-      child: Container(
+    return  Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -140,7 +138,7 @@ class SalesTab extends StatelessWidget {
             Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color)),
           ],
         ),
-      ),
+      
     );
   }
 }

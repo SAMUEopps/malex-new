@@ -41,44 +41,48 @@ class LeadsTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                )
-              ],
-            ),
-            child: leads.isEmpty
-                ? const Center(child: Text('No leads yet'))
-                : ListView.builder(
-                    itemCount: leads.length,
-                    itemBuilder: (_, i) {
-                      final l = leads[i];
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              statusColorBuilder(l.status).withOpacity(0.1),
-                          child: Icon(Icons.leaderboard,
-                              color: statusColorBuilder(l.status)),
-                        ),
-                        title: Text(l.company),
-                        subtitle:
-                            Text('${l.contactPerson} • ${l.status}'),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.phone,
-                              color: Color(0xFF3498DB)),
-                          onPressed: () {},
-                        ),
-                      );
-                    },
-                  ),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              )
+            ],
           ),
+          child: leads.isEmpty
+              ? const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Center(child: Text('No leads yet')),
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: leads.length,
+                  separatorBuilder: (_, __) => const Divider(height: 0),
+                  itemBuilder: (_, i) {
+                    final l = leads[i];
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            statusColorBuilder(l.status).withOpacity(0.1),
+                        child: Icon(Icons.leaderboard,
+                            color: statusColorBuilder(l.status)),
+                      ),
+                      title: Text(l.company),
+                      subtitle: Text('${l.contactPerson} • ${l.status}'),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.phone,
+                            color: Color(0xFF3498DB)),
+                        onPressed: () {},
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );

@@ -56,8 +56,7 @@ class InventoryTab extends StatelessWidget {
         const SizedBox(height: 24),
 
         // DataTable
-        Expanded(
-          child: Container(
+        Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -127,7 +126,7 @@ class InventoryTab extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        
       ],
     );
   }
@@ -135,8 +134,7 @@ class InventoryTab extends StatelessWidget {
   int _lowStockCount() => items.where((i) => i.stockLevel <= i.lowStockThreshold).length;
 
   Widget _kpiCard(String title, String value, Color color) {
-    return Expanded(
-      child: Container(
+    return  Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -153,7 +151,7 @@ class InventoryTab extends StatelessWidget {
             Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color)),
           ],
         ),
-      ),
+      
     );
   }
 }

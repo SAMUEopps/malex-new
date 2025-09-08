@@ -65,12 +65,12 @@ class AccountingTab extends StatelessWidget {
         const SizedBox(height: 24),
 
         // Recent Transactions
-        Expanded(
+        SizedBox(
+          height: 300, // fixed height instead of Expanded
           child: _chartCard(
             'Recent Transactions',
             Icons.receipt_long,
             onViewTransactions,
-            expanded: true,
           ),
         ),
       ],
@@ -100,9 +100,9 @@ class AccountingTab extends StatelessWidget {
     );
   }
 
-  Widget _chartCard(String title, IconData icon, VoidCallback? onTap, {bool expanded = false}) {
+  Widget _chartCard(String title, IconData icon, VoidCallback? onTap) {
     return Container(
-      height: expanded ? double.infinity : 300,
+      width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -116,15 +116,14 @@ class AccountingTab extends StatelessWidget {
         children: [
           Text(title, style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
           const SizedBox(height: 16),
-          Expanded(
-            child: InkWell(
+          InkWell(
               onTap: onTap,
               borderRadius: BorderRadius.circular(8),
               child: Center(
                 child: Icon(icon, size: 48, color: const Color(0xFFBDC3C7)),
               ),
             ),
-          ),
+          
         ],
       ),
     );

@@ -39,40 +39,45 @@ class BranchesTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                )
-              ],
-            ),
-            child: branches.isEmpty
-                ? const Center(child: Text('No branches yet'))
-                : ListView.builder(
-                    itemCount: branches.length,
-                    itemBuilder: (_, i) {
-                      final b = branches[i];
-                      return ListTile(
-                        leading: const CircleAvatar(
-                          backgroundColor: Color(0xFFEBF5FB),
-                          child: Icon(Icons.business, color: Color(0xFF3498DB)),
-                        ),
-                        title: Text(b.name),
-                        subtitle: Text('${b.manager} • ${b.address}'),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.phone, color: Color(0xFF3498DB)),
-                          onPressed: () {},
-                        ),
-                      );
-                    },
-                  ),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              )
+            ],
           ),
+          child: branches.isEmpty
+              ? const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Center(child: Text('No branches yet')),
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: branches.length,
+                  separatorBuilder: (_, __) => const Divider(height: 0),
+                  itemBuilder: (_, i) {
+                    final b = branches[i];
+                    return ListTile(
+                      leading: const CircleAvatar(
+                        backgroundColor: Color(0xFFEBF5FB),
+                        child: Icon(Icons.business, color: Color(0xFF3498DB)),
+                      ),
+                      title: Text(b.name),
+                      subtitle: Text('${b.manager} • ${b.address}'),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.phone, color: Color(0xFF3498DB)),
+                        onPressed: () {},
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );

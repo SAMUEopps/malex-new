@@ -42,8 +42,7 @@ class QuotationsTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Expanded(
-          child: Container(
+         Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -99,7 +98,7 @@ class QuotationsTab extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        
       ],
     );
   }

@@ -61,6 +61,7 @@ class ExpenseTrackerDashboard extends StatefulWidget {
 
 class _ExpenseTrackerDashboardState extends State<ExpenseTrackerDashboard> {
   int _selectedIndex = 0;
+  final ScrollController _navScrollController = ScrollController(); 
 
 final List<NavigationItem> _navigationItems = const [
   NavigationItem('Dashboard', Icons.dashboard),
@@ -121,7 +122,8 @@ final List<NavigationItem> _navigationItems = const [
       body: Row(
         children: [
           // Sidebar Navigation
-          Container(
+          // Sidebar Navigation
+    Container(
             width: 240,
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -130,28 +132,33 @@ final List<NavigationItem> _navigationItems = const [
                   color: Colors.black12,
                   blurRadius: 4,
                   offset: Offset(0, 2),
-                )
+                ),
               ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
-                ..._navigationItems.map((item) {
-                  int index = _navigationItems.indexOf(item);
-                  return NavigationTile(
-                    item: item,
-                    isSelected: _selectedIndex == index,
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = index;
-                      });
-                    },
-                  );
-                }).toList(),
-                const Spacer(),
+                Expanded(
+                  child: Scrollbar(
+                    controller: _navScrollController, // 👈 link controller
+                    thumbVisibility: true,
+                    child: ListView(
+                      controller: _navScrollController, // 👈 same controller
+                      padding: const EdgeInsets.only(top: 20),
+                      children: _navigationItems.map((item) {
+                        final index = _navigationItems.indexOf(item);
+                        return NavigationTile(
+                          item: item,
+                          isSelected: _selectedIndex == index,
+                          onTap: () => setState(() => _selectedIndex = index),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+
+                // Footer – always visible
                 const Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -166,10 +173,7 @@ final List<NavigationItem> _navigationItems = const [
                       SizedBox(height: 4),
                       Text(
                         'Monthly Budget',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF7F8C8D),
-                        ),
+                        style: TextStyle(fontSize: 14, color: Color(0xFF7F8C8D)),
                       ),
                       SizedBox(height: 4),
                       Text(
@@ -184,7 +188,7 @@ final List<NavigationItem> _navigationItems = const [
                       LinearProgressIndicator(
                         value: 0.65,
                         backgroundColor: Color(0xFFECF0F1),
-                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF3498DB)),
+                        valueColor: AlwaysStoppedAnimation(Color(0xFF3498DB)),
                       ),
                     ],
                   ),
@@ -193,14 +197,6 @@ final List<NavigationItem> _navigationItems = const [
               ],
             ),
           ),
-          // Main Content
-          /*Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: _buildCurrentTab(),
-            ),
-          ),*/
-                    // Main Content
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(24.0),

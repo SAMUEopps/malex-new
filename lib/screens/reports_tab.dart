@@ -79,18 +79,94 @@ class ReportsTab extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // Charts row
+        // Charts row - Use fixed height containers instead of Expanded
         Row(
           children: [
-            Expanded(child: _chartCard('Expense by Category', Icons.pie_chart, onExpenseReport)),
+            Expanded(
+              child: Container(
+                height: 300,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: const [
+                    BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Expense by Category', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: InkWell(
+                        onTap: onExpenseReport,
+                        borderRadius: BorderRadius.circular(8),
+                        child: const Center(child: Icon(Icons.pie_chart, size: 48, color: Color(0xFFBDC3C7))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(width: 16),
-            Expanded(child: _chartCard('Sales Trends', Icons.show_chart, onSalesReport)),
+            Expanded(
+              child: Container(
+                height: 300,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: const [
+                    BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Sales Trends', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: InkWell(
+                        onTap: onSalesReport,
+                        borderRadius: BorderRadius.circular(8),
+                        child: const Center(child: Icon(Icons.show_chart, size: 48, color: Color(0xFFBDC3C7))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 24),
 
-        // Custom Report Builder
-        Expanded(child: _chartCard('Custom Report Builder', Icons.analytics, onCustomBuilder, expanded: true)),
+        // Custom Report Builder - Use fixed height instead of Expanded
+        Container(
+          height: 300, // Fixed height instead of Expanded
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Custom Report Builder', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
+              const SizedBox(height: 16),
+              Expanded(
+                child: InkWell(
+                  onTap: onCustomBuilder,
+                  borderRadius: BorderRadius.circular(8),
+                  child: const Center(child: Icon(Icons.analytics, size: 48, color: Color(0xFFBDC3C7))),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -136,34 +212,6 @@ class ReportsTab extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _chartCard(String title, IconData icon, VoidCallback? onTap, {bool expanded = false}) {
-    return Container(
-      height: expanded ? double.infinity : 300,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
-          const SizedBox(height: 16),
-          Expanded(
-            child: InkWell(
-              onTap: onTap,
-              borderRadius: BorderRadius.circular(8),
-              child: Center(child: Icon(icon, size: 48, color: const Color(0xFFBDC3C7))),
-            ),
-          ),
-        ],
       ),
     );
   }

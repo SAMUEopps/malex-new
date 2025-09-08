@@ -42,40 +42,45 @@ class EmailsTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                )
-              ],
-            ),
-            child: emails.isEmpty
-                ? const Center(child: Text('No emails yet'))
-                : ListView.builder(
-                    itemCount: emails.length,
-                    itemBuilder: (_, i) {
-                      final e = emails[i];
-                      return ListTile(
-                        leading: const CircleAvatar(
-                          backgroundColor: Color(0xFFEBF5FB),
-                          child: Icon(Icons.email, color: Color(0xFF3498DB)),
-                        ),
-                        title: Text(e.subject),
-                        subtitle: Text(
-                            'From: ${e.from} • ${DateFormat('MMM dd, yyyy – HH:mm').format(e.date)}'),
-                        trailing: const Icon(Icons.arrow_forward_ios,
-                            size: 16, color: Color(0xFF7F8C8D)),
-                        onTap: () => onOpen?.call(e),
-                      );
-                    },
-                  ),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              )
+            ],
           ),
+          child: emails.isEmpty
+              ? const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Center(child: Text('No emails yet')),
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: emails.length,
+                  separatorBuilder: (_, __) => const Divider(height: 0),
+                  itemBuilder: (_, i) {
+                    final e = emails[i];
+                    return ListTile(
+                      leading: const CircleAvatar(
+                        backgroundColor: Color(0xFFEBF5FB),
+                        child: Icon(Icons.email, color: Color(0xFF3498DB)),
+                      ),
+                      title: Text(e.subject),
+                      subtitle: Text(
+                          'From: ${e.from} • ${DateFormat('MMM dd, yyyy – HH:mm').format(e.date)}'),
+                      trailing: const Icon(Icons.arrow_forward_ios,
+                          size: 16, color: Color(0xFF7F8C8D)),
+                      onTap: () => onOpen?.call(e),
+                    );
+                  },
+                ),
         ),
       ],
     );
