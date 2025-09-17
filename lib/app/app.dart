@@ -18,7 +18,7 @@ import 'package:malex_new/screens/customers_tab.dart';
 import 'package:malex_new/screens/dahboard.dart';
 import 'package:malex_new/screens/emails_tab.dart';
 import 'package:malex_new/screens/employees_tab.dart';
-import 'package:malex_new/screens/expenses_tab.dart';
+import 'package:malex_new/screens/expenses/presentation/expenses_tab.dart';
 import 'package:malex_new/screens/inventory_tab.dart';
 import 'package:malex_new/screens/invoices_tab.dart';
 import 'package:malex_new/screens/leads_tab.dart';
@@ -66,10 +66,10 @@ class _ExpenseTrackerDashboardState extends State<ExpenseTrackerDashboard> {
 final List<NavigationItem> _navigationItems = const [
   NavigationItem('Dashboard', Icons.dashboard),
   NavigationItem('Expenses', Icons.receipt),
-  NavigationItem('Sales', Icons.shopping_cart),
+  NavigationItem('Order Records', Icons.shopping_cart),
   NavigationItem('Cash Sales', Icons.point_of_sale),
   NavigationItem('Quotations', Icons.note_add),
-  NavigationItem('Invoices', Icons.description),
+  NavigationItem('Deliveries', Icons.description),
   NavigationItem('Inventory', Icons.inventory),
   NavigationItem('Customers', Icons.people),
   NavigationItem('Leads', Icons.leaderboard),
@@ -197,14 +197,28 @@ final List<NavigationItem> _navigationItems = const [
               ],
             ),
           ),
-          Expanded(
+          /*Expanded(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
               child: SingleChildScrollView(
                 child: _buildCurrentTab(),
               ),
             ),
-          ),
+          ),*/
+          Expanded(
+  child: Padding(
+    padding: const EdgeInsets.all(24.0),
+    child: SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height, // 👈 force top alignment
+        ),
+        child: _buildCurrentTab(),
+      ),
+    ),
+  ),
+),
+
         ],
       ),
     );
@@ -229,11 +243,12 @@ Widget _buildCurrentTab() {
       //onReceipt: (e) => _handleReceipt(e),
     );
     case 2:
-      return SalesTab(
+      /*return SalesTab(
         sales: seedSales,
         statusColorBuilder: _getStatusColor,
        // onNewSale: _handleNewSale,
-      );
+      );*/
+     return RecordsTab(onNewRecord: () {/* push your create form */});
     case 3:
       return CashSalesTab(
       sales: seedCashSales,
