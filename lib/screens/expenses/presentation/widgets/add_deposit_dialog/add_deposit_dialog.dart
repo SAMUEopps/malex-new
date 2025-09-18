@@ -9,6 +9,7 @@ import 'package:malex_new/screens/expenses/presentation/widgets/shared/button_st
 import 'package:malex_new/screens/expenses/presentation/widgets/shared/text_styles.dart';
 import 'package:flutter/material.dart';
 
+
 class AddDepositDialog {
   static Future<CashDeposit?> show(BuildContext context) async {
     return showDialog<CashDeposit>(
@@ -123,16 +124,18 @@ class _DepositDialogContentState extends State<_DepositDialogContent> {
     );
   }
 
-  void _submit() {
-    if (!_formKey.currentState!.validate()) return;
-    _formKey.currentState!.save();
-    final dateTime = DateTime(_date.year, _date.month, _date.day, _time.hour,
-        _time.minute);
-    Navigator.of(context).pop(CashDeposit(
-      source: _source,
-      amount: _amount,
-      date: dateTime,
-      notes: _notes,
-    ));
-  }
+// In _submit() method of _DepositDialogContentState
+void _submit() {
+  if (!_formKey.currentState!.validate()) return;
+  _formKey.currentState!.save();
+  final dateTime = DateTime(_date.year, _date.month, _date.day, _time.hour,
+      _time.minute);
+  Navigator.of(context).pop(CashDeposit(
+    id: '', // Backend will generate the ID
+    source: _source,
+    amount: _amount,
+    date: dateTime,
+    notes: _notes,
+  ));
+}
 }

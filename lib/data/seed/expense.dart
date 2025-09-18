@@ -1,4 +1,4 @@
-import '../../models/expense.dart';
+/*import '../../models/expense.dart';
 
 final List<Expense> seedExpenses = [
   Expense(DateTime(2024, 4, 22), 2500.0, 'Truck fuel', 'Transportation', 'Shell Station', 'Credit Card', 'receipt_001.jpg'),
@@ -8,4 +8,4 @@ final List<Expense> seedExpenses = [
   Expense(DateTime(2024, 4, 5), 1500.0, 'Solvents', 'Raw Materials', 'ChemCorp', 'Bank Transfer', 'receipt_005.jpg'),
   Expense(DateTime(2024, 4, 3), 4500.0, 'Chemical drums', 'Containers', 'Container World', 'Credit Card', 'receipt_006.jpg'),
   Expense(DateTime(2024, 4, 1), 3200.0, 'Safety equipment', 'Safety', 'Safety First Ltd', 'Bank Transfer', 'receipt_007.jpg'),
-];
+];*/

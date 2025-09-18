@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:malex_new/core/error/failures.dart';
-import '../../domain/entities/expense.dart';
+import 'package:malex_new/models/expense.dart';
 import '../../domain/repositories/expense_repository.dart';
 import '../datasources/expense_remote_ds.dart';
 import '../models/expense_model.dart';
@@ -32,7 +32,7 @@ class ExpenseRepositoryImpl implements ExpenseRepository {
         category: expense.category,
         paymentMethod: expense.paymentMethod,
       );
-      final created = await _remote.createExpense(model);
+      final created = await _remote.createExpense(model as Expense);
       return Right(created);
     } catch (e) {
       return Left(ServerFailure());
@@ -51,7 +51,7 @@ class ExpenseRepositoryImpl implements ExpenseRepository {
         category: expense.category,
         paymentMethod: expense.paymentMethod,
       );
-      final updated = await _remote.updateExpense(expense.id, model);
+      final updated = await _remote.updateExpense(expense.id as Expense, model);
       return Right(updated);
     } catch (e) {
       return Left(ServerFailure());

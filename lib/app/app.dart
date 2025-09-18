@@ -4,12 +4,10 @@ import 'package:malex_new/data/seed/cash_sale.dart';
 import 'package:malex_new/data/seed/customer.dart';
 import 'package:malex_new/data/seed/emails.dart';
 import 'package:malex_new/data/seed/employees.dart';
-import 'package:malex_new/data/seed/expense.dart';
 import 'package:malex_new/data/seed/inventory.dart';
 import 'package:malex_new/data/seed/invoice.dart';
 import 'package:malex_new/data/seed/lead.dart';
 import 'package:malex_new/data/seed/quotation.dart';
-import 'package:malex_new/data/seed/sales.dart';
 import 'package:malex_new/data/seed/settings.dart';
 import 'package:malex_new/screens/accounting_tab.dart';
 import 'package:malex_new/screens/branches_tab.dart';
@@ -172,7 +170,7 @@ final List<NavigationItem> _navigationItems = const [
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Monthly Budget',
+                        'Current Balance',
                         style: TextStyle(fontSize: 14, color: Color(0xFF7F8C8D)),
                       ),
                       SizedBox(height: 4),
@@ -185,11 +183,11 @@ final List<NavigationItem> _navigationItems = const [
                         ),
                       ),
                       SizedBox(height: 8),
-                      LinearProgressIndicator(
+                      /*LinearProgressIndicator(
                         value: 0.65,
                         backgroundColor: Color(0xFFECF0F1),
                         valueColor: AlwaysStoppedAnimation(Color(0xFF3498DB)),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -229,12 +227,12 @@ Widget _buildCurrentTab() {
     case 0:
       return DashboardTab(
       cards: _dashboardCards,
-      expenses: seedExpenses,
-      categoryColorBuilder: _getCategoryColor,
+      //expenses: seedExpenses,
+      categoryColorBuilder: _getCategoryColor, expenses: [],
     );
     case 1: 
     return ExpensesTab(  
-      expenses: seedExpenses,
+      //expenses: seedExpenses,
       categoryColorBuilder: _getCategoryColor,
       //onAdd: _handleAdd,
       //onFilter: _handleFilter,
@@ -326,8 +324,8 @@ Widget _buildCurrentTab() {
     default:
       return DashboardTab(
       cards: _dashboardCards,
-      expenses: seedExpenses,
-      categoryColorBuilder: _getCategoryColor,
+      //expenses: seedExpenses,
+      categoryColorBuilder: _getCategoryColor, expenses: [],
     );
   }
 }

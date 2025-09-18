@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:malex_new/core/error/failures.dart';
-import '../entities/expense.dart';
+import 'package:malex_new/models/expense.dart';
+
 
 abstract class ExpenseRepository {
   Future<Either<Failure, List<Expense>>> getExpenses();

@@ -1,4 +1,5 @@
-import '../../domain/entities/expense.dart';
+import 'package:malex_new/models/expense.dart';
+
 
 class ExpenseState {
   final bool loading;

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:malex_new/models/expense.dart';
 import 'package:malex_new/screens/expenses/data/datasources/expense_remote_ds.dart';
 import 'package:malex_new/screens/expenses/data/repositories/expense_repo_impl.dart';
-import '../../domain/entities/expense.dart';
 import '../../domain/repositories/expense_repository.dart';
 import 'expense_state.dart';
 
@@ -70,4 +70,7 @@ class ExpenseNotifier extends StateNotifier<ExpenseState> {
           expenses: state.expenses.where((e) => e.id != id).toList()),
     );
   }
+}
+
+extension on Object? {
 }
